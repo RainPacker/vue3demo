@@ -27,7 +27,8 @@
     "vue-cli-plugin-vue-next": "~0.1.4",
     "@vue/cli-plugin-unit-mocha": "~4.5.0",
     "@vue/test-utils": "^2.0.0-0",
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "macaca-datahub": "^3.1.5"
   },
   "eslintConfig": {
     "root": true,

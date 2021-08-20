@@ -1,4 +1,4 @@
-# vuedemo
+# vue3 练习项目
 
 ## Project setup
 ```
