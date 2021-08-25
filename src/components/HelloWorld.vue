@@ -8,11 +8,14 @@
   <div>{{ collectionName }}: {{ readersNumber }} {{ book.title }}</div>
   <slot></slot>
   <button @click="addPer">添加属性</button>
+  <br>
+  <p>当前位置： x: {{point.x}} y: {{ point.y }}</p>
 </template>
 
 <script>
 import {reactive, ref, computed, onMounted, watch, watchEffect} from 'vue'
 import getMsg from './Test.js'
+import usePoint from '../hook/usePoint'
 export default {
   name: 'HelloWorld',
   props: {
@@ -39,10 +42,13 @@ export default {
     })
     const readersNumber = ref(0)
     const book = reactive({title: 'Vue3 guide'})
-    getMsg()
+    let point = usePoint()
+    console.log(point)
+   //
     onMounted(()=>{
       console.log(" onMonunted....", props.collectionName);
-      console.log (getMsg())
+      console.log ( getMsg())
+      
      
     })
     // 监听具体属性 state。num1  deep 无效 
@@ -63,7 +69,7 @@ export default {
      state.book = book
   }
      // 暴露给 template
-    return {state, readersNumber, book, msg2: ref(getMsg()), addPer}
+    return {state, readersNumber, book, msg2: ref(getMsg()), addPer, point}
     
   },
   // #region
