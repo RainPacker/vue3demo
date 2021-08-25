@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {reactive,computed, toRefs} from "vue"
+import {reactive,computed, toRefs, watchEffect, watch} from "vue"
 export default {
    name:"itemTodo",
    props:{
@@ -48,8 +48,8 @@ export default {
            type:Array
        }
    },
-   setup(props,{emit}){
-      
+   setup(props,{emit, attrs, slots}){
+      console.log(props, emit, attrs, slots)
       console.log(props.dataList); 
     let state=reactive({
        todoNum:computed(()=>props.dataList.length),
@@ -61,6 +61,13 @@ export default {
       function deletItem(item){
         emit("del-item",item);
      }
+     watchEffect(()=>{
+       console.log('...watchEffect')
+     })
+     // 侦听
+     watch(state, (cur,old)=> {
+       console.log('watch....',cur, old.todoNum)
+     }, { deep: true })
 
     return {
         ...toRefs(state),finishItem,deletItem

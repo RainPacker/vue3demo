@@ -2,22 +2,26 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <TodoList></TodoList>
+    <!-- <TodoList></TodoList> -->
     <!-- <Sign></Sign> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
- import  TodoList  from './components/TodoList'
+// import  TodoList  from './components/TodoList'
 //import Sign from "./components/Sign"
-
+import {ref} from 'vue'
 export default {
   name: 'App',
   components: {
     // HelloWorld,
-     TodoList,
+    //  TodoList,
     // Sign
+  },
+  provide: {
+    user: ref('Rain')
   }
 }
 </script>

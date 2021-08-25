@@ -9,6 +9,7 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@vue/server-renderer": "^3.2.4",
     "core-js": "^3.6.5",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
@@ -19,16 +20,17 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "@vue/test-utils": "^2.0.0-0",
     "babel-eslint": "^10.1.0",
+    "chai": "^4.1.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "macaca-datahub": "^3.1.5",
     "vue-cli-plugin-vue-next": "~0.1.4",
-    "@vue/cli-plugin-unit-mocha": "~4.5.0",
-    "@vue/test-utils": "^2.0.0-0",
-    "chai": "^4.1.2",
-    "macaca-datahub": "^3.1.5"
+    "webpack-dev-server": "^3.0.0"
   },
   "eslintConfig": {
     "root": true,
