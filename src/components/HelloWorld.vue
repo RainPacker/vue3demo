@@ -7,13 +7,16 @@
   <h1>{{user.value}} {{msg2}}</h1>
   <div>{{ collectionName }}: {{ readersNumber }} {{ book.title }}</div>
   <slot></slot>
+  <input v-model="num">
+  <h1>{{num}}</h1>
   <button @click="addPer">添加属性</button>
   <br>
+  <p>car: {{car}}</p>
   <p>当前位置： x: {{point.x}} y: {{ point.y }}</p>
 </template>
 
 <script>
-import {reactive, ref, computed, onMounted, watch, watchEffect} from 'vue'
+import {reactive, ref, computed, onMounted, watch, watchEffect, customRef, inject} from 'vue'
 import getMsg from './Test.js'
 import usePoint from '../hook/usePoint'
 export default {
@@ -43,7 +46,33 @@ export default {
     const readersNumber = ref(0)
     const book = reactive({title: 'Vue3 guide'})
     let point = usePoint()
+    let num = myRef(1)
     console.log(point)
+    let car = inject('car')
+    console.log(car)
+    // 自定义实现防抖
+    function myRef (value){
+      let timer ;
+      return customRef((track, trigger) => {
+        return {
+          get(){
+            console.log('get....')
+            track()
+            return value
+          },
+          set(newVal) {
+              console.log('有人修改了'+ newVal)
+              value = newVal
+              clearTimeout(timer)
+              // 延时
+               timer =  setTimeout(() => {
+                   trigger()
+               },500)
+            
+          }
+        }
+      });
+    }
    //
     onMounted(()=>{
       console.log(" onMonunted....", props.collectionName);
@@ -69,7 +98,7 @@ export default {
      state.book = book
   }
      // 暴露给 template
-    return {state, readersNumber, book, msg2: ref(getMsg()), addPer, point}
+    return {state, readersNumber, book, msg2: ref(getMsg()), addPer, point, num, car}
     
   },
   // #region

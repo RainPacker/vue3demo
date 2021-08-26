@@ -2,17 +2,27 @@
   <div>
     {{store.state}}
    <AddItem  ref="addInput" :title="title" @add-item="addItem"  ></AddItem>
-   <ItemTodoList ref="itemTodo" @finish-item="finishItem" @del-item="delItem" :dataList="list"></ItemTodoList>
+   <Suspense>
+     <template v-slot:default>
+          <ItemTodoList ref="itemTodo" @finish-item="finishItem" @del-item="delItem" :dataList="list"></ItemTodoList>
+     </template>
+     <template v-slot:fallback>
+       loading...
+     </template>
+   </Suspense>
+
    <ItemFinishList :dataList="finishList" ></ItemFinishList>
    
   </div>
 </template>
 
 <script>
-import {reactive,ref,toRefs,onMounted} from 'vue';
+import {reactive,ref,toRefs,onMounted,defineAsyncComponent} from 'vue';
 import {useStore} from 'vuex'
-import   AddItem from "./AddItem"
-import ItemTodoList from "./ItemTodoList"
+ import   AddItem from "./AddItem"
+//import ItemTodoList from "./ItemTodoList"
+// 异步引入 组件
+const ItemTodoList =  defineAsyncComponent(() => import('./ItemTodoList'))
 import ItemFinishList from "./ItemFinishList";
 import {useRouter} from "vue-router"
 export default {

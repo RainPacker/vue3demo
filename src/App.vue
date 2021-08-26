@@ -12,7 +12,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 // import  TodoList  from './components/TodoList'
 //import Sign from "./components/Sign"
-import {ref} from 'vue'
+import {ref, provide,reactive,isProxy} from 'vue'
 export default {
   name: 'App',
   components: {
@@ -22,6 +22,12 @@ export default {
   },
   provide: {
     user: ref('Rain')
+  },
+  setup() {
+    let car = reactive({msg:'xxxx'} )
+     provide('car',car)
+     console.log(isProxy(car))
+    return { car}
   }
 }
 </script>

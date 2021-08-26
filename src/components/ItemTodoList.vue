@@ -48,6 +48,7 @@ export default {
            type:Array
        }
    },
+   emits:['finish-item','del-item'],
    setup(props,{emit, attrs, slots}){
       console.log(props, emit, attrs, slots)
       console.log(props.dataList); 
